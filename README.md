@@ -31,4 +31,3 @@
 
 ### Nginx
 * restart `/etc/init.d/nginx restart`
-* `curl -i -X GET "https://graph.facebook.com/debug_token?input_token={input-token}&access_token={valid-access-token}" --trace out`

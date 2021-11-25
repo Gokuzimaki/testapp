@@ -3,13 +3,12 @@
 namespace App\Entity;
 
 use DateTime;
-use App\Utility\NumberFormat;
+
 use App\Enum\Status\StatusEnum;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use App\Enum\TransactionType\TransactionTypeEnum;
-use App\Service\UserAccountBalance\UserAccountBalanceService;
 
 /**
  * UserAccountBalance

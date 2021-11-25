@@ -9,9 +9,7 @@
 * Go into the machine with `$ docker-compose exec php bash` and run the commands below
 * `$ composer install`
 * `$ php bin/console doctrine:migrations:migrate`
-* `$ php bin/console doctrine:fixtures:load`
-* `$ npm install`
-* `$ npm run watch`
+
 * App available on `http://localhost:8086` on windows
 
 #### Database

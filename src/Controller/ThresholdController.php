@@ -2,17 +2,18 @@
 
 namespace App\Controller;
 
+use App\Trait\ValidateParametersTrait;
+use App\Service\UserAccountBalanceThreshold\Support\Dto\ThresholdResponseDto;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Service\UserAccountBalanceThreshold\Support\Dto\ThresholdUpdateDto;
-use App\Service\UserAccountBalanceThreshold\Support\Dto\ThresholdResponseDto;
 use App\Service\UserAccountBalanceThreshold\UserAccountBalanceThresholdUpdatehandler;
 
 class ThresholdController extends AbstractController
 {
+    use ValidateParametersTrait;
 
     /**
      * @Route("/threshold", name="taskapp_threshold", methods={"POST","GET"})
@@ -21,19 +22,12 @@ class ThresholdController extends AbstractController
         Request $request,
         UserAccountBalanceThresholdUpdatehandler $userAccountBalanceThresholdUpdatehandler
     ): JsonResponse {
-        $user_id = $request->get('user_id');
-
-        if (!$user_id) {
-            $errorMessage = 'User Id not found, send "(string) user_id"  and "(float) amount" parameter with your request.';
-            $response = new JsonResponse((new ThresholdResponseDto())
-                ->setSuccess(false)
-                ->setMessage($errorMessage));
-
-            $response->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
-
-            return $response;
+        $validateParameters = ValidateParametersTrait::validateParameters($request, new ThresholdResponseDto());
+        if ($validateParameters instanceof JsonResponse) {
+            return $validateParameters;
         }
 
+        $user_id = $request->get('user_id');
         $amount = $request->get('amount');
 
         $thresholdUpdateDto = (new ThresholdUpdateDto())

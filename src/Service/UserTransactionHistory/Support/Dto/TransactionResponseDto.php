@@ -2,9 +2,10 @@
 
 namespace App\Service\UserTransactionHistory\Support\Dto;
 
+use App\Support\Dto\RequestResponseDtoInterface;
 use JsonSerializable;
 
-class TransactionResponseDto implements JsonSerializable
+class TransactionResponseDto implements RequestResponseDtoInterface, JsonSerializable
 {
     private bool $success;
     private ?string $message;
@@ -47,7 +48,7 @@ class TransactionResponseDto implements JsonSerializable
     /**
      * Get the value of success
      */
-    public function getSuccess()
+    public function getSuccess(): ?bool
     {
         return $this->success;
     }
@@ -67,7 +68,7 @@ class TransactionResponseDto implements JsonSerializable
     /**
      * Get the value of message
      */
-    public function getMessage()
+    public function getMessage(): ?string
     {
         return $this->message;
     }
@@ -87,7 +88,7 @@ class TransactionResponseDto implements JsonSerializable
     /**
      * Get the value of data
      */
-    public function getData()
+    public function getData(): ?array
     {
         return $this->data;
     }
@@ -107,7 +108,7 @@ class TransactionResponseDto implements JsonSerializable
     /**
      * Get the value of statusCode
      */
-    public function getStatusCode()
+    public function getStatusCode(): ?int
     {
         return $this->statusCode;
     }
@@ -127,7 +128,7 @@ class TransactionResponseDto implements JsonSerializable
     /**
      * Get the value of userId
      */
-    public function getUserId()
+    public function getUserId(): ?string
     {
         return $this->userId;
     }
@@ -147,7 +148,7 @@ class TransactionResponseDto implements JsonSerializable
     /**
      * Get the value of threshold
      */
-    public function getThreshold()
+    public function getThreshold(): ?string
     {
         return $this->threshold;
     }
@@ -167,7 +168,7 @@ class TransactionResponseDto implements JsonSerializable
     /**
      * Get the value of totalSpendings
      */
-    public function getTotalSpendings()
+    public function getTotalSpendings(): ?string
     {
         return $this->totalSpendings;
     }
@@ -187,7 +188,7 @@ class TransactionResponseDto implements JsonSerializable
     /**
      * Get the value of hasThreshold
      */
-    public function getHasThreshold()
+    public function getHasThreshold(): ?bool
     {
         return $this->hasThreshold;
     }

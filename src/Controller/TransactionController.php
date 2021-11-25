@@ -10,30 +10,27 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Service\UserTransactionHistory\Support\Dto\TransactionResponseDto;
 use App\Service\UserTransactionHistory\UserTransactionUpdateHandler;
+use App\Trait\ValidateParametersTrait;
 use Symfony\Component\HttpFoundation\Response;
 
 class TransactionController extends AbstractController
 {
+    use ValidateParametersTrait;
+
     /**
-     * @Route("/credit", name="taskapp_credit", methods={"POST","GET"})
+     * @Route("/credit", name="taskapp_credit", methods={"POST"})
      */
     public function creditUser(
         Request $request,
         UserTransactionUpdateHandler $userTransactionUpdateHandler
     ): JsonResponse {
-        $user_id = $request->get('user_id');
 
-        if (!$user_id) {
-            $errorMessage = 'User Id not found, send "(string) user_id"  and "(float) amount" parameter with your request.';
-            $response = new JsonResponse((new TransactionResponseDto())
-                ->setSuccess(false)
-                ->setMessage($errorMessage));
-
-            $response->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
-
-            return $response;
+        $validateParameters = ValidateParametersTrait::validateParameters($request, new TransactionResponseDto());
+        if ($validateParameters instanceof JsonResponse) {
+            return $validateParameters;
         }
 
+        $user_id = $request->get('user_id');
         $amount = $request->get('amount');
 
         $transactionUpdateDto = (new TransactionUpdateDto())
@@ -49,25 +46,18 @@ class TransactionController extends AbstractController
 
 
     /**
-     * @Route("/debit", name="taskapp_debit", methods={"GET"})
+     * @Route("/debit", name="taskapp_debit", methods={"POST"})
      */
     public function debitUser(
         Request $request,
         UserTransactionUpdateHandler $userTransactionUpdateHandler
     ): JsonResponse {
-        $user_id = $request->get('user_id');
-
-        if (!$user_id) {
-            $errorMessage = 'User Id not found, send "(string) user_id"  and "(float) amount" parameter with your request.';
-            $response = new JsonResponse((new TransactionResponseDto())
-                ->setSuccess(false)
-                ->setMessage($errorMessage));
-
-            $response->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
-
-            return $response;
+        $validateParameters = ValidateParametersTrait::validateParameters($request, new TransactionResponseDto());
+        if ($validateParameters instanceof JsonResponse) {
+            return $validateParameters;
         }
 
+        $user_id = $request->get('user_id');
         $amount = $request->get('amount');
 
         $transactionUpdateDto = (new TransactionUpdateDto())
@@ -78,7 +68,6 @@ class TransactionController extends AbstractController
         $transactionResponse = $userTransactionUpdateHandler->initTransaction($transactionUpdateDto);
         $statusCode = $transactionResponse->getStatusCode();
 
-        // dd($transactionResponse, $transactionResponse->jsonSerialize());
 
         return new JsonResponse($transactionResponse, $statusCode);
     }

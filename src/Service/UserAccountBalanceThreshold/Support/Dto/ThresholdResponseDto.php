@@ -2,9 +2,10 @@
 
 namespace App\Service\UserAccountBalanceThreshold\Support\Dto;
 
+use App\Support\Dto\RequestResponseDtoInterface;
 use JsonSerializable;
 
-class ThresholdResponseDto implements JsonSerializable
+class ThresholdResponseDto implements RequestResponseDtoInterface, JsonSerializable
 {
 
     private bool $success;
@@ -32,7 +33,7 @@ class ThresholdResponseDto implements JsonSerializable
     /**
      * Get the value of success
      */
-    public function getSuccess()
+    public function getSuccess(): ?bool
     {
         return $this->success;
     }
@@ -52,7 +53,7 @@ class ThresholdResponseDto implements JsonSerializable
     /**
      * Get the value of message
      */
-    public function getMessage()
+    public function getMessage(): ?string
     {
         return $this->message;
     }
@@ -72,7 +73,7 @@ class ThresholdResponseDto implements JsonSerializable
     /**
      * Get the value of data
      */
-    public function getData()
+    public function getData(): ?array
     {
         return $this->data;
     }
@@ -92,7 +93,7 @@ class ThresholdResponseDto implements JsonSerializable
     /**
      * Get the value of statusCode
      */
-    public function getStatusCode()
+    public function getStatusCode(): ?int
     {
         return $this->statusCode;
     }

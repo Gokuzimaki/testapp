@@ -29,5 +29,9 @@
 ### Tests
 * Go into the machine with `$ docker-compose exec php bash` and run the command below
 * `php bin/phpunit`
-* Use PostMan via the link below while docker is up and running
+
+* Install [PostMan]
+* Use PostMan via the link below while docker is up and running.
 * `https://go.postman.co/workspace/Local-Test~b4e599bd-5a51-4b03-a852-0644133ec91d/collection/18453068-9693f690-dbec-4b13-a7aa-fbecee2b4297`
+
+[PostMan]: <https://www.postman.com/downloads/>

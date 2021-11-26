@@ -20,7 +20,7 @@ final class Version20211122210102 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql("CREATE TABLE `taskapp`.`users` ( `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ,
+        $this->addSql("CREATE TABLE `users` ( `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ,
         `open_banking_user_id` VARCHAR(255) NOT NULL ,
         `created_at` DATETIME NOT NULL ,
         `status` ENUM('ACTIVE','INACTIVE') NULL DEFAULT 'ACTIVE' ,
@@ -42,7 +42,7 @@ final class Version20211122210102 extends AbstractMigration
         ");
 
 
-        $this->addSql("CREATE TABLE `taskapp`.`user_account_balance_thresholds` ( `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ,
+        $this->addSql("CREATE TABLE `user_account_balance_thresholds` ( `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ,
         `user_id` INT(10) UNSIGNED NOT NULL ,
         `threshold_balance` DECIMAL(16,2) NULL,
         `created_at` DATETIME NOT NULL ,
@@ -52,7 +52,7 @@ final class Version20211122210102 extends AbstractMigration
         CONSTRAINT `user_account_balance_thresholds_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
         ) ENGINE = InnoDB CHARSET=utf8mb4 COLLATE utf8mb4_general_ci");
 
-        $this->addSql("CREATE TABLE `taskapp`.`user_transaction_histories` (
+        $this->addSql("CREATE TABLE `user_transaction_histories` (
         `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
         `user_account_balance_id` INT(10) UNSIGNED NOT NULL,
         `cash_balance` DECIMAL(16,2) NULL ,
@@ -66,15 +66,6 @@ final class Version20211122210102 extends AbstractMigration
         CONSTRAINT `user_transaction_histories_ibfk_1` FOREIGN KEY (`user_account_balance_id`) REFERENCES `user_account_balances` (`id`) ON DELETE CASCADE
         ) ENGINE = InnoDB CHARSET=utf8mb4 COLLATE utf8mb4_general_ci
         ");
-
-        /* $this->addSql("ALTER TABLE `user_transaction_histories`
-        ADD CONSTRAINT `user_account_balance_ibfk_1` FOREIGN KEY (`user_account_balance_id`) REFERENCES `user_account_balances`(`id`) ON DELETE CASCADE ON UPDATE RESTRICT"); */
-
-
-
-        /* $this->addSql("ALTER TABLE `user_account_balance_threshold`
-        ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`user_id`)
-        REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE RESTRICT"); */
     }
 
     public function down(Schema $schema): void

@@ -19,7 +19,7 @@
 * Migrating new Migrations: `php bin/console doctrine:migrations:migrate`
 * `php bin/console doctrine:schema:update --force`
 * mysql -u USERNAME -pPASSWORD -h HOSTNAMEORIP DATABASENAME
-* mysql -u root -pPassword -h db afrilence
+* mysql -u root -pPassword -h db testapp
 
 
 ##### Cache
@@ -29,3 +29,7 @@
 
 ### Nginx
 * restart `/etc/init.d/nginx restart`
+
+### Tests
+* Go into the machine with `$ docker-compose exec php bash` and run the command below
+* `php bin/phpunit`

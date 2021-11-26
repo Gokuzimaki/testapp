@@ -124,12 +124,15 @@ class UserTransactionUpdateHandler
 
         $userThreshold = $this->userAccountBalanceThresholdService->getOneByUser($user);
 
-        $isPastThresholdBalance =  $userThreshold->getThresholdBalance() > $newBalance;
+        if ($userThreshold) {
 
-        if ($isPastThresholdBalance) {
-            $transactionUpdateDto->setThreshold($userThreshold->getFormattedThreshold())
-                ->setTotalSpendings($userAccount->getTotalSpendAmount())
-                ->setHasThreshold(true);
+            $isPastThresholdBalance =  $userThreshold->getThresholdBalance() > $newBalance;
+
+            if ($isPastThresholdBalance) {
+                $transactionUpdateDto->setThreshold($userThreshold->getFormattedThreshold())
+                    ->setTotalSpendings($userAccount->getTotalSpendAmount())
+                    ->setHasThreshold(true);
+            }
         }
 
         return $transactionUpdateDto;

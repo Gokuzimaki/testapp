@@ -19,7 +19,7 @@
 * Migrating new Migrations: `php bin/console doctrine:migrations:migrate`
 * `php bin/console doctrine:schema:update --force`
 * mysql -u USERNAME -pPASSWORD -h HOSTNAMEORIP DATABASENAME
-* mysql -u root -pPassword -h db testapp
+* mysql -u root -pPassword -h db taskapp
 
 
 ##### Cache

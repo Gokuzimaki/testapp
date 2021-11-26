@@ -20,12 +20,11 @@ class UserAccountBalanceThresholdService
     private UserAccountBalanceThresholdRepository $userAccountBalanceThresholdRepository;
 
     public function __construct(
-        EntityManagerInterface $entityManager,
-        UserAccountBalanceThresholdRepository $userAccountBalanceThresholdRepository
+        EntityManagerInterface $entityManager
     ) {
         $this->entityManager = $entityManager;
 
-        $this->userAccountBalanceThresholdRepository = $userAccountBalanceThresholdRepository;
+        $this->userAccountBalanceThresholdRepository = $this->entityManager->getRepository(UserAccountBalanceThreshold::class);
     }
 
     /**

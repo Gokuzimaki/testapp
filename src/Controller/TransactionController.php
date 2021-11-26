@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Service\UserTransactionHistory\Support\Dto\TransactionResponseDto;
 use App\Service\UserTransactionHistory\UserTransactionUpdateHandler;
 use App\Trait\ValidateParametersTrait;
-use Symfony\Component\HttpFoundation\Response;
+
 
 class TransactionController extends AbstractController
 {

@@ -6,7 +6,7 @@ use App\Entity\User;
 use App\Entity\UserAccountBalance;
 use App\Enum\Status\StatusEnum;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\UserAccountBalanceRespository;
+use App\Repository\UserAccountBalanceRepository;
 use DateTime;
 
 class UserAccountBalanceService
@@ -19,15 +19,14 @@ class UserAccountBalanceService
     /**
      * @var UserRepository
      */
-    private UserAccountBalanceRespository $userAccountBalanceRepository;
+    private UserAccountBalanceRepository $userAccountBalanceRepository;
 
     public function __construct(
-        EntityManagerInterface $entityManager,
-        UserAccountBalanceRespository $userAccountBalanceRepository
+        EntityManagerInterface $entityManager
     ) {
         $this->entityManager = $entityManager;
 
-        $this->userAccountBalanceRepository = $userAccountBalanceRepository;
+        $this->userAccountBalanceRepository = $this->entityManager->getRepository(UserAccountBalance::class);
     }
 
     /**

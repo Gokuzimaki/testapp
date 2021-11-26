@@ -22,12 +22,11 @@ class UserService
     private UserRepository $userRepository;
 
     public function __construct(
-        EntityManagerInterface $entityManager,
-        UserRepository $userRepository
+        EntityManagerInterface $entityManager
     ) {
         $this->entityManager = $entityManager;
 
-        $this->userRepository = $userRepository;
+        $this->userRepository = $this->entityManager->getRepository(User::class);
     }
 
     /**

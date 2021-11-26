@@ -19,12 +19,11 @@ class UserTransactionHistoryService
     private UserTransactionHistoryRepository $userTransactionHistoryRepository;
 
     public function __construct(
-        EntityManagerInterface $entityManager,
-        UserTransactionHistoryRepository $userTransactionHistoryRepository
+        EntityManagerInterface $entityManager
     ) {
         $this->entityManager = $entityManager;
 
-        $this->userTransactionHistoryRepository = $userTransactionHistoryRepository;
+        $this->userTransactionHistoryRepository = $this->entityManager->getRepository(UserTransactionHistory::class);
     }
 
     /**

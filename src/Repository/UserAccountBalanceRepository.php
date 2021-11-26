@@ -6,7 +6,7 @@ use App\Entity\UserAccountBalance;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
-class UserAccountBalanceRespository extends ServiceEntityRepository
+class UserAccountBalanceRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

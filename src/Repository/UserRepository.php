@@ -2,8 +2,8 @@
 
 namespace App\Repository;
 
-use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\User;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 class UserRepository extends ServiceEntityRepository

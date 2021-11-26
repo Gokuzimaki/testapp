@@ -18,7 +18,7 @@ trait ValidateParametersTrait
                 ->setSuccess(false)
                 ->setMessage('User Id not found, send "(string) user_id"  and "(float) amount" parameter with your request.'));
 
-            $response->setStatusCode(Response::HTTP_EXPECTATION_FAILED);
+            $response->setStatusCode(Response::HTTP_BAD_REQUEST);
 
             return $response;
         }
@@ -30,7 +30,7 @@ trait ValidateParametersTrait
                 ->setSuccess(false)
                 ->setMessage('Send "(float) amount" parameter with your request.'));
 
-            $response->setStatusCode(Response::HTTP_EXPECTATION_FAILED);
+            $response->setStatusCode(Response::HTTP_BAD_REQUEST);
 
             return $response;
         }

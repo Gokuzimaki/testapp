@@ -52,7 +52,7 @@ class TransactionControllerTest extends BaseWebTestCase
         $statusCode = self::$client->getResponse()->getStatusCode();
 
         $this->assertEquals(true, $responseData['success']);
-        $this->assertEquals(200, $statusCode);
+        $this->assertEquals(Response::HTTP_OK, $statusCode);
     }
 
     public function testInvalidUserDebitAmount()
@@ -68,6 +68,6 @@ class TransactionControllerTest extends BaseWebTestCase
         $statusCode = self::$client->getResponse()->getStatusCode();
 
         $this->assertEquals(false, $responseData['success']);
-        $this->assertEquals(Response::HTTP_EXPECTATION_FAILED, $statusCode);
+        $this->assertEquals(Response::HTTP_BAD_REQUEST, $statusCode);
     }
 }

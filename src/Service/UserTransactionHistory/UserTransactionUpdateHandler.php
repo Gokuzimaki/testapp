@@ -60,7 +60,7 @@ class UserTransactionUpdateHandler
         return (new TransactionResponseDto())
             ->setSuccess(false)
             ->setMessage($errorMessage ?? 'No transaction processed, invalid amount provided')
-            ->setStatusCode(Response::HTTP_PRECONDITION_FAILED);
+            ->setStatusCode(Response::HTTP_BAD_REQUEST);
     }
 
 
@@ -96,7 +96,7 @@ class UserTransactionUpdateHandler
         if ($amount > $userAccount->getCashBalance()) {
             return (new TransactionResponseDto())->setSuccess(false)
                 ->setMessage('Balance too low for debit')
-                ->setStatusCode(Response::HTTP_PRECONDITION_FAILED);
+                ->setStatusCode(Response::HTTP_BAD_REQUEST);
         }
 
         $newBalance = $userAccount->getCashBalance() - $amount;

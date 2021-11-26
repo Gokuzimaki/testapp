@@ -3,6 +3,7 @@
 namespace App\Tests\Functional\Controller;
 
 use App\Tests\BaseWebTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class ThresholdControllerTest extends BaseWebTestCase
 {
@@ -29,6 +30,6 @@ class ThresholdControllerTest extends BaseWebTestCase
         $statusCode = self::$client->getResponse()->getStatusCode();
 
         $this->assertEquals(true, $responseData['success']);
-        $this->assertEquals(200, $statusCode);
+        $this->assertEquals(Response::HTTP_OK, $statusCode);
     }
 }

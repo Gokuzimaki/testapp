@@ -3,6 +3,7 @@
 namespace App\Tests\Integration;
 
 use App\Tests\BaseWebTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class ThresholdLimitReachedTest extends BaseWebTestCase
 {
@@ -43,7 +44,7 @@ class ThresholdLimitReachedTest extends BaseWebTestCase
         $responseData = json_decode(self::$client->getResponse()->getContent(), true);
         $statusCode = self::$client->getResponse()->getStatusCode();
 
-        $this->assertEquals(200, $statusCode);
+        $this->assertEquals(Response::HTTP_OK, $statusCode);
         $this->assertEquals(true, $responseData['success']);
         $this->assertEquals('1adfe3-56bcae-367dde-446aed', $responseData['userId']);
         $this->assertEquals('4,500', $responseData['threshold']);

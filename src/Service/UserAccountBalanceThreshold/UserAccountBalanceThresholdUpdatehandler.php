@@ -58,6 +58,6 @@ class UserAccountBalanceThresholdUpdatehandler
         return (new ThresholdResponseDto())
             ->setSuccess(false)
             ->setMessage($errorMessage ?? 'No update done, invalid amount provided')
-            ->setStatusCode(Response::HTTP_PRECONDITION_FAILED);
+            ->setStatusCode(Response::HTTP_BAD_REQUEST);
     }
 }

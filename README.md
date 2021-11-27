@@ -30,6 +30,8 @@
 ### Tests
 * Go into the machine with `$ docker-compose exec php bash` and run the command below
 * `php bin/phpunit`
+* Or Use MakeFile.mk to run tests with the command below
+* `make -f Makefile.mk`
 
 * Install [PostMan]
 * Use PostMan via the link below while docker is up and running.

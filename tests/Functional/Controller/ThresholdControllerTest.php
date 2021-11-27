@@ -15,7 +15,7 @@ class ThresholdControllerTest extends BaseWebTestCase
         parent::setUp();
     }
 
-    public function testSuccessfulUserCredit()
+    public function testSuccessfulUserThresholdBalanceUpdate()
     {
 
 

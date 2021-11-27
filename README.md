@@ -14,6 +14,7 @@
 
 #### Database
 * Migrating new Migrations: `php bin/console doctrine:migrations:migrate`
+* Migrating test Migrations: `APP_ENV=test php bin/console d:m:m`
 * mysql -u USERNAME -pPASSWORD -h HOSTNAMEORIP DATABASENAME
 * mysql -u root -pPassword -h db taskapp
 
